@@ -62,3 +62,15 @@ select D.DEP_NAME , E.F_NAME, E.L_NAME
 from EMPLOYEES as E, DEPARTMENTS as D
 where E.DEP_ID = D.DEPT_ID_DEP
 order by D.DEP_NAME, E.L_NAME desc ;
+
+select * from employees;
+select avg(salary) from employees;
+--SUB SELECT EPRESSION list of employees earning less than average salary : 
+SELECT * FROM EMPLOYEES WHERE SALARY < (SELECT AVG(SALARY) FROM EMPLOYEES);
+
+-- we want to compare the salary of each employee with the average salary
+SELECT F_NAME, SALARY, (SELECT AVG(SALARY) FROM EMPLOYEES) AS AVG_SALARY FROM EMPLOYEES;
+
+--SUB QUERIES in FROM CLAUSE - RETREIVE NON SENSITIVE INFORMATION FROM EMPLOYEES
+SELECT * FROM (SELECT EMP_ID,F_NAME,L_NAME, DEP_ID FROM EMPLOYEES ) AS EMPLOYEES4ALL;
+
