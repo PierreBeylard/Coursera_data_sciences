@@ -88,7 +88,16 @@ __dependent or child table__ A table containing one or more foreign keys is call
 __entity integrity constraint__: similar to _primary key constraint_ or _unique constraint_.The primary key is a unique value that identifies each topple or row in a table. CANNOT ACCEPT NULL VALUES
 __referential integrity constraint__: The Referential Integrity Constraint ensures the validity of the data using a combination of Primary Keys and Foreign Keys.It defines relationships between tables and ensures that these relationships remain valid
 __semantic integrity constraint__: The semantic integrity constraint is related to the correctness of the data. Avoid garbage value in table (**$ùù^ in age column violate the semantic integrity constraint)
-__domain constraint__: A domain constraint specifies the permissible values for a given attribute. for example : age must contain digits and no varchar
+__domain constraint__ : A domain constraint specifies the permissible values for a given attribute. for example : age must contain digits and no varchar
 __null constraint__ :The null constraint specifies that attribute values cannot be null.
 __check constraint__: The check constraint enforces domain integrity by limiting the values that are accepted by an attribute. example in the relation book, the attribute year is the year in which a particular book is published. If this was still the year 2010, it would not be meaningful to have a year greater than the current year. 
 
+
+## JOIN ON MULTIPLE TABLE 
+
+__inner join__ : display only the rows that match the criteria - SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B INNER JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID;  
+SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE,C_STATUS from BORROWER B INNER JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID INNER JOIN COPY CON L.COPY_ID=C.COPY_ID;
+__outer join__ : 3 types of outer joins 
+_left outer join or left join_ display all rows of left table and matching rows from right table  SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B LEFT JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID
+_right outer join or right join_ display all rows of right table and matchin rows form left table  SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B RIGHT JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID
+_full outer join or full join_ : return all rows from both tables SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B FULL JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID
