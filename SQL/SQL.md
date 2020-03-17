@@ -59,6 +59,10 @@ SELECT COUNT(DISTINCT country) from instructor where city = 'Chicago';
 __limit__
 SELECT * FROM instructor LIMIT(1);
 
+--To limit the number of rows in the result table of a query:
+__fetch FIRST n ROWS ONLY__  
+SELECT * FROM INSTRUCTOR fetch first 5 rows only; 
+
 --5b. Retrieve all rows from the table
 SELECT * FROM INSTRUCTOR 
 ;
@@ -81,6 +85,9 @@ _Descending Order_ : key word desc
 SELECT * FROM instructor ORDER BY lastname DESC
 _select on which column we want to order the results (here on lastname)_ :
 SELECT firstname, lastname FROM instructor ORDER BY 2; 
+-make nulls values come last or first when sorting 
+__NULLS LAST OR FIRST__ 
+SELECT * FROM INSTRUCTOR order by RATES NULLS LAST ;
  
 __year__
 certaines fonctions comme year permettent d'extraire l'année d'une date si le format date est bien respecté
