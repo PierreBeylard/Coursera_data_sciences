@@ -28,7 +28,12 @@ INSERT INTO INSTRUCTOR
   (3, 'Vasudevan', 'Hima', 'Chicago', 'US')
 ;
 --3. Select all rows in the table
+__select__ 
+if necessary, we can use double quote to specify column's name that we want to select. It may be necessary when we load the data with header composed of mixed case in the database. example Id/
+if columns header contains spaces or special characters as ' or () parentheses or bracket, they are commonly replaced by underscore _ . Example : Name of dogs will be mapped to Name_of_dogs. 
 SELECT * FROM INSTRUCTOR
+SELECT "Id" FROM Dogs;
+SELECT "Name_of_dogs" from DOGS;
 ;
 --3b. Select firstname, lastname and country where city is Toronto
 __where__
@@ -76,6 +81,9 @@ _Descending Order_ : key word desc
 SELECT * FROM instructor ORDER BY lastname DESC
 _select on which column we want to order the results (here on lastname)_ :
 SELECT firstname, lastname FROM instructor ORDER BY 2; 
+ 
+__year__
+certaines fonctions comme year permettent d'extraire l'année d'une date si le format date est bien respecté
 
 ## PRIMARY AND FOREIGN KEY 
 __referencing__ is a relationship between table. example : table book and table author: To look up the author information, the book entity refers to the author entity. To look up the book information, the author entity refers to the book entity. 
@@ -101,3 +109,39 @@ __outer join__ : 3 types of outer joins
 _left outer join or left join_ display all rows of left table and matching rows from right table  SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B LEFT JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID
 _right outer join or right join_ display all rows of right table and matchin rows form left table  SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B RIGHT JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID
 _full outer join or full join_ : return all rows from both tables SELECT B.BORROWER_ID, B.LAST_NAME, L_BORROWER_ID, L_LOAN_DATE from BORROWER B FULL JOIN LOAN L ON B.BORROWER_ID = L.BORROWER_ID
+
+## Querying with Python 
+
+You may be issuing queries in a notebook by first assigning them to Python variables. In such cases if your query contains double quotes for example, to specify a mixed case column name, you could differentiate the quotes by using single quotes for the Python variable to enclose this SQL query and double quotes for the column names. 
+For example, selectQuery ='select "Id" from dogs.' 
+
+Now, what if you need to specify single quotes within the query, for example, to specify a value in the where clause?
+In this case you can use backslash as the escape character as follows:
+select Query = 'select * from dogs where "Name_of_Dog"=\'Huggy\' '
+
+Use \ backslash to split the query in multiple lines 
+%sql select "Id," Name_of_Dog," \ 
+	from dogs \
+	where"Name_of_Dog" = 'Huggy.'
+
+When using SQL magic, you can use the double percent SQL in the first line of the cell in Jupyter Notebooks. It implies that the rest of the content of the cell is to be interpreted by SQL magic. 
+For example : 
+%% sql 
+select "Id", "Name_of_dog," 
+	from dogs 
+	where "Name_of_dog = 'Huggy.' 
+When using %% sql the backslash is not needed at the end of each line.
+
+## Getting a list of tables with their attributes : 
+- In DB2 this catalog is called syscat tables. 
+- In SQL Server, it's information schema tables 
+- In Oracle it's all tables or user tables.
+
+ex for db2 : 
+SELECT TABSCHEMA, TABNAME,CREATE_TIME FROM syscat.tables WHERE tabschema = 'DB2USERNAME'
+
+ex for DB2- obtain column names : 
+SELECT * FROM syscat.columns WHERE tabname= 'DOGS'
+
+ex for DB2 : Obtain specific columns properties : 
+SELECT distinct(name), coltype, lenght FROM sysibm.syscolumns WHERE tabname='Dogs' ;
