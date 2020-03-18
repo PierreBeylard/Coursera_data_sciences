@@ -36,7 +36,7 @@ SELECT "Id" FROM Dogs;
 SELECT "Name_of_dogs" from DOGS;
 ;
 --3b. Select firstname, lastname and country where city is Toronto
-__where__
+__where__ : used to filter records before grouping results
 SELECT firstname, lastname, country from INSTRUCTOR where city='Toronto'
 ;
 --4. Change the city for Rav to Markham
@@ -95,7 +95,8 @@ certaines fonctions comme year permettent d'extraire l'année d'une date si le f
 __group by__ : 
 
 
-__having__ :
+__having__ : use to filter values after they have been grouped 
+
 
 ## PRIMARY AND FOREIGN KEY 
 __referencing__ is a relationship between table. example : table book and table author: To look up the author information, the book entity refers to the author entity. To look up the book information, the author entity refers to the book entity. 
