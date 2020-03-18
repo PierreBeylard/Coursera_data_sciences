@@ -92,6 +92,11 @@ SELECT * FROM INSTRUCTOR order by RATES NULLS LAST ;
 __year__
 certaines fonctions comme year permettent d'extraire l'année d'une date si le format date est bien respecté
 
+__group by__ : 
+
+
+__having__ :
+
 ## PRIMARY AND FOREIGN KEY 
 __referencing__ is a relationship between table. example : table book and table author: To look up the author information, the book entity refers to the author entity. To look up the book information, the author entity refers to the book entity. 
 __A primary key__ uniquely identify each row of table.
@@ -152,3 +157,14 @@ SELECT * FROM syscat.columns WHERE tabname= 'DOGS'
 
 ex for DB2 : Obtain specific columns properties : 
 SELECT distinct(name), coltype, lenght FROM sysibm.syscolumns WHERE tabname='Dogs' ;
+
+## Some functions usefull in SQL 
+
+__change column type__ 
+cast(column_name as espected_type)
+or directly with 
+DECIMAL(column_name)
+
+__replace caract by another caract__
+replace(column_name, 'caract to be replaced', 'new caract')
+
